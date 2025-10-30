@@ -1,0 +1,77 @@
+<main class="h-screen w-screen flex flex-col-reverse lg:flex-row bg-slate-800 overflow-hidden">
+  
+  <!-- Controls Panel -->
+  <aside class="w-full lg:w-96 bg-slate-900/70 backdrop-blur-sm border-t lg:border-t-0 lg:border-r border-slate-700/50 shadow-2xl p-2 lg:p-4 overflow-y-auto">
+    <div class="p-4">
+      <h1 class="text-2xl font-bold text-white mb-1">3D Shelf Configurator</h1>
+      <p class="text-sm text-slate-400 mb-6">Adjust parameters to build your custom shelf.</p>
+    
+      <div class="space-y-6">
+        <!-- Dimensions -->
+        <div>
+          <h2 class="text-lg font-semibold text-sky-400 mb-3 border-b border-slate-700 pb-2">I. Dimensions</h2>
+          <div class="space-y-4 p-2">
+            <app-slider label="Shelf Width" [min]="50" [max]="250" unit="cm" [(value)]="width" />
+            <app-slider label="Shelf Height" [min]="50" [max]="250" unit="cm" [(value)]="height" />
+            <app-slider label="Shelf Depth" [min]="20" [max]="60" unit="cm" [(value)]="depth" />
+          </div>
+        </div>
+
+        <!-- Structure -->
+        <div>
+          <h2 class="text-lg font-semibold text-sky-400 mb-3 border-b border-slate-700 pb-2">II. Structure</h2>
+          <div class="space-y-4 p-2">
+            <app-slider label="Horizontal Levels" [min]="1" [max]="10" [(value)]="horizontalLevels" />
+            <app-slider label="Vertical Divisions" [min]="1" [max]="5" [(value)]="verticalDivisions" />
+          </div>
+        </div>
+
+        <!-- Materiality -->
+        <div>
+          <h2 class="text-lg font-semibold text-sky-400 mb-3 border-b border-slate-700 pb-2">III. Materiality</h2>
+          <div class="space-y-4 p-2">
+            <app-slider label="Board Thickness" [min]="1" [max]="5" unit="cm" [(value)]="boardThickness" />
+            <div>
+              <label for="material-select" class="font-medium text-slate-300 text-sm mb-2 block">Main Material</label>
+              <select id="material-select" class="w-full bg-slate-700 border border-slate-600 rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none" (change)="onMaterialChange($event)">
+                <option>Gloss White</option>
+                <option>Matte Black</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Advanced -->
+        <div>
+          <h2 class="text-lg font-semibold text-sky-400 mb-3 border-b border-slate-700 pb-2">IV. Advanced</h2>
+           <div class="space-y-4 p-2">
+              <label for="edge-select" class="font-medium text-slate-300 text-sm mb-2 block">Edge Profile</label>
+              <select id="edge-select" class="w-full bg-slate-700 border border-slate-600 rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-sky-500 focus:outline-none" (change)="onEdgeProfileChange($event)">
+                <option>Sharp 90°</option>
+                <option>Rounded/Beveled</option>
+              </select>
+           </div>
+        </div>
+
+        <!-- Add-ons -->
+        <div>
+          <h2 class="text-lg font-semibold text-sky-400 mb-3 border-b border-slate-700 pb-2">V. Add-ons</h2>
+           <div class="space-y-4 p-2">
+              <app-toggle label="Doors" [(value)]="doors" />
+              <app-toggle label="LED Lamps" [(value)]="lamps" />
+              <app-toggle label="Hanger Rail (Top Sections)" [(value)]="hangers" />
+           </div>
+        </div>
+
+      </div>
+    </div>
+  </aside>
+
+  <!-- 3D Viewport -->
+  <div class="flex-1 h-full w-full relative">
+    <canvas #canvas class="w-full h-full block"></canvas>
+    <div class="absolute top-4 left-4 text-xs text-slate-400 bg-slate-900/50 px-3 py-1 rounded-full">
+      Use mouse to Orbit / Zoom / Pan
+    </div>
+  </div>
+</main>

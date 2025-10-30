@@ -1,0 +1,5 @@
+{
+  "name": "3D Bookshelf Configurator",
+  "description": "A modern, interactive 3D bookshelf configurator built with Angular and Three.js. Customize dimensions, structure, and materials in real-time with a minimalist and intuitive interface.",
+  "requestFramePermissions": []
+}
